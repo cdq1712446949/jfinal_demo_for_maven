@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>#(blogName)</title>
+    <link rel="stylesheet" type="text/css" href="#(url)css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="#(url)css/nprogress.css">
+    <link rel="stylesheet" type="text/css" href="#(url)/css/style.css">
+    <link rel="stylesheet" type="text/css" href="#(url)css/font-awesome.min.css">
+    <link rel="apple-touch-icon-precomposed" href="#(url)images/icon/icon.png">
+    <link rel="shortcut icon" href="http://66.98.126.138/blog/images/logo.png">
+    <script src="#(url)js/jquery-2.1.4.min.js"></script>
+    <script src="#(url)js/nprogress.js"></script>
+    <script src="#(url)js/jquery.lazyload.min.js"></script>
+</head>
+
+<style type="text/css">
+
+    .more{
+        background: deepskyblue;
+        opacity: 0.6;
+        height: 40px;
+        line-height: 40px;
+        overflow:hidden;
+        vertical-align:middle;
+        margin:20px;
+    }
+
+    .more a{
+        float: right;
+        width: 100%;
+        text-align: center;
+        color: black;
+        font-size: 18px;
+    }
+
+</style>
+
+<body class="user-select">
+<header class="header">
+    <nav class="navbar navbar-default" id="navbar">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#header-navbar" aria-expanded="false"><span class="sr-only"></span> <span
+                        class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
+                <h1 class="logo hvr-bounce-in"><a href="#(href)/blog" title="">#(session.blogName)</a></h1>
+            </div>
+            <div class="collapse navbar-collapse" id="header-navbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#(href)/blog">首页</a></li>
+                    #for(x:session.headList)
+                    <li><a href="#(href)/blog/getArticleByType?pn=1&&type=#(x.num)">#(x.name)</a></li>
+                    #end
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<section class="container">
+    <div class="content-wrap">
+        <div class="content">
+            #for(x:articlePage.list)
+            <article class="excerpt excerpt-1">
+                <a class="focus" href="#" title="">
+                    #if(x.type==0)
+                    <img class="thumb" src="#(url)images/Javaweb.jpg" alt="java web">
+                    #end
+                    #if(x.type==1)
+                    <img class="thumb" src="#(url)images/java.jpg" alt="java">
+                    #end
+                    #if(x.type==2)
+                    <img class="thumb" src="#(url)images/jfinal.jpg" alt="jfinal">
+                    #end
+                    #if(x.type==3)
+                    <img class="thumb" src="#(url)images/mysql.jpg" alt="mysql">
+                    #end
+                    #if(x.type==4)
+                    <img class="thumb" src="#(url)images/maven.jpg" alt="mysql">
+                    #end
+                    #if(x.type==5)
+                    <img class="thumb" src="#(url)images/asp.net.jpg" alt="mysql">
+                    #end
+                    #if(x.type==6)
+                    <img class="thumb" src="#(url)images/android.jpg" alt="mysql">
+                    #end
+                    #if(x.type==7)
+                    <img class="thumb" src="#(url)images/ssh.jpg" alt="mysql">
+                    #end
+                    #if(x.type==8)
+                    <img class="thumb" src="#(url)images/ssm.png" alt="mysql">
+                    #end
+                </a>
+                <header><a class="cat" href="#">
+                    #if(x.type==0)
+                    Java Web
+                    #end
+                    #if(x.type==1)
+                    Java
+                    #end
+                    #if(x.type==2)
+                    JFinal
+                    #end
+                    #if(x.type==3)
+                    MySQL
+                    #end
+                    #if(x.type==4)
+                    Maven
+                    #end
+                    #if(x.type==5)
+                    ASP.NET
+                    #end
+                    #if(x.type==6)
+                    Android
+                    #end
+                    #if(x.type==7)
+                    SSH
+                    #end
+                    #if(x.type==8)
+                    SSM
+                    #end
+                    <i></i></a>
+                    <h2><a href="#(href)/blog/initArticle?id=#(x.id)" title="">#(x.title)</a></h2>
+                </header>
+                <p class="meta">
+                    <time class="time"><i class="glyphicon glyphicon-time"></i> #(x.createdDate)</time>
+                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> #(x.num_look)</span>
+                    <!--<a class="comment" href="blog.html#comment">-->
+                    <!--<i class="glyphicon glyphicon-comment"></i> 0个不明物体-->
+                    <!--</a>-->
+                </p>
+                <p class="note">#(x.introduce)</p>
+            </article>
+            #end
+            #if(articlePage.totalPage==0)
+            <h4>暂无该类型文章</h4>
+            #end
+            #if(articlePage.totalPage!=0)
+            #if(articlePage.totalPage!=articlePage.pageNumber)
+            <div class="more">
+                <a href="#(href)/blog/getArticleByType?pn=#(articlePage.pageNumber+1)&&type=#(type)">下一页</a>
+            </div>
+            #end
+            #if(1!=articlePage.pageNumber)
+            <div class="more">
+                <a href="#(href)/blog/getArticleByType?pn=#(articlePage.pageNumber-1)&&type=#(type)">上一页</a>
+            </div>
+            #end
+            #end
+        </div>
+    </div>
+
+</section>
+
+<script src="http://66.98.126.138/blog/js/bootstrap.min.js"></script>
+<script src="http://66.98.126.138/blog/js/jquery.ias.js"></script>
+<script src="http://66.98.126.138/blog/js/scripts.js"></script>
+</body>
+</html>

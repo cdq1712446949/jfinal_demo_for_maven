@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>鬼泣</title>
+    <link rel="stylesheet" href="#(url)log_reg/css/style.css">
+</head>
+
+<style type="text/css">
+    .log_reg_button{
+        width: 91%;
+        padding: 10px;
+        border: none;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        cursor: pointer;
+        -webkit-box-shadow: 0 0 19px rgba(0, 0, 0, .1);
+        -moz-box-shadow: 0 0 19px rgba(0, 0, 0, .1);
+        box-shadow: 0 0 19px rgba(0, 0, 0, .1);
+        background: rgba(6,127,228,0.71);
+        color: white;
+        font-weight: bold;
+        letter-spacing: 12px;
+        text-align: center;
+        outline: none;
+        -webkit-transition: all 2s;
+        -moz-transition: all 2s;
+        -ms-transition: all 2s;
+        -o-transition: all 2s;
+        transition: all 2s;
+    }
+
+    .log_reg_button:hover{
+        -webkit-box-shadow:0 15px 30px 0 rgba(255,255,255,.15) inset, 0 2px 7px 0 rgba(0,0,0,.2);
+        -moz-box-shadow:0 15px 30px 0 rgba(255,255,255,.15) inset, 0 2px 7px 0 rgba(0,0,0,.2);
+        box-shadow:0 15px 30px 0 rgba(255,255,255,.15) inset, 0 2px 7px 0 rgba(0,0,0,.2);
+    }
+
+</style>
+
+<body>
+<!--背景-->
+<div class="wel" id="background-3"></div>
+<!--左右两边云-->
+<div class="wel" id="box">
+    <div class="box-1 lefp"></div>
+    <div class="box-1">
+        <div class="righp"></div>
+    </div>
+</div>
+<!--荧光点点-->
+<div class="wel" id="git"></div>
+<!--登录注册表-->
+<div class="wel" id="from">
+    <div class="box-2 le-1">
+        <form action="#(href)/login/loginResult" method="post">
+            <div class="flrg">
+                    <h3>登录</h3>
+                <div class="a">
+                    <!--<label>账号：</label>-->
+                    <input name="user.phone" type="text" class="in-1" placeholder="请输入手机号码">
+                </div>
+                <div class="a">
+                    <!--<label>密码：</label>-->
+                    <input name="user.password" type="password" class="in-1" placeholder="请输入密码">
+                </div>
+                <div class="a">
+                    <input class="log_reg_button" type="submit" value="登录" href="/login/loginResult"></input>
+                    #if(login_error!="")
+                    <div>
+                        #(login_error)
+                    </div>
+                    #end
+                </div>
+                <div class="a">
+                    <div class="hr"></div>
+                </div>
+                <div class="a">
+                    <a href="#(href)/login/forgetPd">忘记密码？</a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="box-2 le-2">
+        <form action="#(href)/login/registResult" method="post">
+            <div class="flrg-1">
+                <h3>注册</h3>
+                <div class="a">
+                    <input name="user.username" type="text" class="in-1" placeholder="昵称">
+                </div>
+                <div class="a">
+                    <input name="user.password" type="password" class="in-1" placeholder="输入密码">
+                </div>
+                <div class="a">
+                    <input type="password" class="in-1" placeholder="再次确认密码">
+                </div>
+                <div class="a">
+                    <input name="user.phone" type="text" class="in-1" placeholder="输入手机号码">
+                </div>
+                <div class="a">
+                    <input class="log_reg_button" type="submit" href="/login/registResult" value="注册"></input>
+                </div>
+                #if(regist_error!="")
+                <div>
+                    #(regist_error)
+                </div>
+                #end
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

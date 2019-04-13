@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>amdin</title>
+<link rel="stylesheet" href="#(url)css/admin_login.css" />
+</head>
+
+<body>
+<img src="#(url)images/admin_login_bg.jpg" class="bgImg" />
+<div class="content">
+	<div class="bidTitle">管理员登录</div>
+	<div class="logCon">
+		<form action="#(href)/admin/admin_login" method="post">
+		<div class="line"><span>账号:</span>
+		<input class="bt_input" type="text" name="username"/></div>
+		<div class="line"><span>密码:</span>
+		<input class="bt_input" type="password" name="password" /></div>
+		<input type="submit" class="logingBut" value="登录"></input>
+		</form>
+		#if(login_error!="")
+		<div>
+			#(login_error)
+		</div>
+		#end
+	</div>
+
+</div>
+<div style="text-align:center;">
+</div>
+</body>
+
+</html>

@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>#(article.title)</title>
+    <link rel="stylesheet" type="text/css" href="#(url)css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="#(url)css/nprogress.css">
+    <link rel="stylesheet" type="text/css" href="#(url)css/style.css">
+    <link rel="stylesheet" type="text/css" href="#(url)css/font-awesome.min.css">
+    <link rel="apple-touch-icon-precomposed" href="#(url)images/icon/icon.png">
+    <link rel="shortcut icon" href="http://66.98.126.138/blog/images/logo.png">
+    <script src="#(url)js/jquery-2.1.4.min.js"></script>
+    <script src="#(url)js/nprogress.js"></script>
+    <script src="#(url)js/jquery.lazyload.min.js"></script>
+    <script src="#(url)js/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="#(url)js/html5shiv.min.js" type="text/javascript"></script>
+    <script src="#(url)js/respond.min.js" type="text/javascript"></script>
+
+    <!-- 引入下面三条 -->
+    <link rel="stylesheet" type="text/css" href="#(url)ueditor/styles/tomorrow-night-eighties.css">
+    <script type="text/javascript" src="#(url)ueditor/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="user-select single">
+<header class="header">
+    <nav class="navbar navbar-default" id="navbar">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#header-navbar" aria-expanded="false"><span class="sr-only"></span> <span
+                        class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
+                <h1 class="logo hvr-bounce-in"><a href="#(href)/blog" title="">#(session.blogName)</a></h1>
+            </div>
+            <div class="collapse navbar-collapse" id="header-navbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#(href)/blog">首页</a></li>
+                    #for(x:session.headList)
+                    <li><a href="#(href)/blog/getArticleByType?pn=1&&type=#(x.num)">#(x.name)</a></li>
+                    #end
+
+                </ul>
+                <form class="navbar-form visible-xs" action="/" method="post">
+                    <div class="input-group">
+                        <input type="text" name="keyword" class="form-control" placeholder="请输入关键字" maxlength="20"
+                               autocomplete="off">
+                        <span class="input-group-btn">
+            <button class="btn btn-default btn-search" name="search" type="submit">搜索</button>
+            </span></div>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+<section class="container">
+    <div class="content-wrap">
+        <div class="content">
+            <header class="article-header">
+                <h1 class="article-title"><a >#(article.title)</a></h1>
+                <div class="article-meta"> <span class="item article-meta-time">
+          <time class="time" data-toggle="tooltip" data-placement="bottom" title="时间：2016-1-4 10:29:39"><i
+                  class="glyphicon glyphicon-time"></i> #(article.createdDate)</time>
+          </span>
+                    <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom"
+                          title="查看：120"><i
+                            class="glyphicon glyphicon-eye-open"></i>浏览#(article.num_look)次</span></div>
+            </header>
+            <article>
+                #(article.content)
+            </article>
+            <div class="article-tags">标签：<a href="#" rel="tag"> #if(article.type==0)
+                Java Web
+                #end
+                #if(article.type==1)
+                Java
+                #end
+                #if(article.type==2)
+                JFinal
+                #end
+                #if(article.type==3)
+                MySQL
+                #end
+                #if(article.type==4)
+                Maven
+                #end
+                #if(article.type==5)
+                ASP.NET
+                #end
+                #if(article.type==6)
+                Android
+                #end
+                #if(article.type==7)
+                SSH
+                #end
+                #if(article.type==8)
+                SSM
+                #end</a></div>
+            <div class="title" id="comment">
+                <h3>评论
+                    <small>抢沙发</small>
+                </h3>
+            </div>
+            <div id="respond">
+                #if(session.cdqblog_user_username=="")
+                <div class="comment-signarea">
+                    <h3 class="text-muted">评论前必须登录！</h3>
+                    <p><a href="#(href)/login/goLogin" class="btn btn-primary login" rel="nofollow">立即登录</a> &nbsp; <a
+                            href="#(href)/login/registView" class="btn btn-default register" rel="nofollow">注册</a></p>
+                </div>
+                #end
+                #if(session.cdqblog_user_username!="")
+                <form action="#(href)/comment/addComment?user_id=#(session.cdqblog_user_id)&&article_id=#(article.id)" method="post" id="comment-form">
+                    <div class="comment">
+                        <div class="comment-title"><img class="avatar" src="#(url)images/icon/icon.png" alt=""/></div>
+                        <div class="comment-box">
+                            <textarea placeholder="您的评论可以一针见血" name="content" id="comment-textarea" cols="100%" rows="3"
+                                      tabindex="1"></textarea>
+                            <div class="comment-ctrl">
+                                <div class="comment-prompt"><i class="fa fa-spin fa-circle-o-notch"></i> <span
+                                        class="comment-prompt-text"></span></div>
+                                <input type="hidden" value="1" class="articleid"/>
+                                <input type="submit" id="comment-submit" value="评论">
+                                </input>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                #end
+            </div>
+            <div id="postcomments">
+                <ol class="commentlist">
+                    #for(x:commentPage.list)
+                    <li class="comment-content">
+                        <div class="comment-avatar"><img class="avatar" src="#(url)images/icon/icon.png" alt=""/></div>
+                        <div class="comment-main">
+                            <p><span class="address">#(x.username)</span><span class="time">#(x.createdDate)</span><br/>
+                                #(x.content)</p>
+                        </div>
+                    </li>
+                    #end
+                </ol>
+
+                <div class="quotes">
+                    <span><a href="#(href)/blog/initArticle?id=#(article.id)&&comment_pn=1">首页</a></span>
+                    #if(commentPage.totalPage==0)
+                    <span><a href="#" class="current">1</a></span>
+                    #end
+                    #if(commentPage.totalPage!=0)
+                    #if(commentPage.pageNumber!=1)
+                    <span ><a href="#(href)/blog/initArticle?id=#(article.id)&&comment_pn=#(commentPage.pageNumber-1)">上一页</a></span>
+                    #end
+                    #for(x:[1..commentPage.totalPage])
+                    #if(commentPage.pageNumber==x)
+                    <a class="current" href="#(href)/blog/initArticle?id=#(article.id)&&comment_pn=#(x)">#(x)</a>
+                    #end
+                    #if(commentPage.pageNumber!=x)
+                    <a  href="#(href)/blog/initArticle?id=#(article.id)&&comment_pn=#(x)">#(x)</a>
+                    #end
+                    #end
+                    #if(commentPage.pageNumber!=commentPage.totalPage)
+                    <span><a href="#(href)/blog/initArticle?id=#(article.id)&&comment_pn=#(commentPage.pageNumber+1)">下一页</a></span>
+                    #end
+                    <span ><a href="#(href)/blog/initArticle?id=#(article.id)&&comment_pn=#(commentPage.totalPage)">尾页</a></span>
+                    #end
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <aside class="sidebar">
+        <div class="fixed">
+            <div class="widget widget-tabs">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#notice" aria-controls="notice" role="tab"
+                                                              data-toggle="tab">网站公告</a></li>
+                    <li role="presentation"><a href="#centre" aria-controls="centre" role="tab"
+                                               data-toggle="tab">会员中心</a></li>
+                    <li role="presentation"><a href="#contact" aria-controls="contact" role="tab"
+                                               data-toggle="tab">联系站长</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane notice active" id="notice">
+                        <ul>
+                            #for(x:noticePage.list)
+                            <li>
+                                <time datetime="2016-01-04">#(x.createDate)</time>
+                                <a href="" target="_blank">#(x.content)</a>
+                            </li>
+                            #end
+                        </ul>
+                    </div>
+                    #if(session.cdqblog_user_username=="")
+                    <div role="tabpanel" class="tab-pane centre" id="centre">
+                        <h4>需要登录才能进入会员中心</h4>
+                        <p><a class="btn btn-primary" href="#(href)/login/goLogin">立即登录</a>
+                            <a class="btn btn-default" href="#(href)/login/registView">现在注册</a></p>
+                    </div>
+                    #end
+                    #if(session.cdqblog_user_username!="")
+                    <div role="tabpanel" class="tab-pane centre" id="centre">
+                        <h4>#(session.cdqblog_user_username)</h4>
+                    </div>
+                    #end
+                    <div role="tabpanel" class="tab-pane contact" id="contact">
+                        <h2>QQ:<br/>
+                            <a href="mailto:admin@ylsat.com" data-toggle="tooltip" data-placement="bottom"
+                               title="admin@ylsat.com">1712446949</a></h2>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="widget widget_search">-->
+                <!--<form class="navbar-form" action="/Search" method="post">-->
+                    <!--<div class="input-group">-->
+                        <!--<input type="text" name="keyword" class="form-control" size="35" placeholder="请输入关键字"-->
+                               <!--maxlength="15" autocomplete="off">-->
+                        <!--<span class="input-group-btn">-->
+            <!--<button class="btn btn-default btn-search" name="search" type="submit">搜索</button>-->
+            <!--</span></div>-->
+                <!--</form>-->
+            <!--</div>-->
+        </div>
+        <div class="widget widget_sentence">
+            <h3>每日一句</h3>
+            <div class="widget-sentence-content">
+                <h4>#(onedayword.createDate)</h4>
+                <p>#(onedayword.content) </p>
+                <p align="right">#(onedayword.author)</p>
+            </div>
+        </div>
+        <div class="widget widget_hot">
+            <h3>热门文章</h3>
+            <ul>
+                #for(hotArticle:hotArticlePage.list)
+                <li><a href="#(href)/blog/initArticle?id=#(hotArticle.id)">
+                    <span class="thumbnail">
+                        #if(hotArticle.type==0)
+                         <img class="thumb" src="#(url)images/Javaweb.jpg" alt="">
+                        #end
+                         #if(hotArticle.type==1)
+                         <img class="thumb" src="#(url)images/java.jpg" alt="">
+                        #end
+                         #if(hotArticle.type==2)
+                         <img class="thumb" src="#(url)images/jfinal.jpg" alt="">
+                        #end
+                         #if(hotArticle.type==3)
+                         <img class="thumb" src="#(url)images/mysql.jpg" alt="">
+                        #end
+                        #if(hotArticle.type==4)
+                        <img class="thumb" src="#(url)images/maven.jpg" alt="mysql">
+                        #end
+                        #if(hotArticle.type==5)
+                        <img class="thumb" src="#(url)images/asp.net.jpg" alt="mysql">
+                        #end
+                        #if(hotArticle.type==6)
+                        <img class="thumb" src="#(url)images/android.jpg" alt="mysql">
+                        #end
+                        #if(hotArticle.type==7)
+                        <img class="thumb" src="#(url)images/ssh.jpg" alt="mysql">
+                        #end
+                        #if(hotArticle.type==8)
+                        <img class="thumb" src="#(url)images/ssm.png" alt="mysql">
+                        #end
+                    </span>
+                    <span class="text">#(hotArticle.title)</span>
+                    <span class="muted"><i class="glyphicon glyphicon-time"></i> #(hotArticle.createdDate) </span>
+                    <span class="muted"><i class="glyphicon glyphicon-eye-open"></i>#(hotArticle.num_look)</span></a>
+                </li>
+                #end
+            </ul>
+        </div>
+    </aside>
+</section>
+<script src="#(url)js/bootstrap.min.js"></script>
+<script src="#(url)js/jquery.ias.js"></script>
+<script src="#(url)js/scripts.js"></script>
+<script src="#(url)js/jquery.qqFace.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.emotion').qqFace({
+            id: 'facebox',
+            assign: 'comment-textarea',
+            path: '/arclist/'	//表情存放的路径
+        });
+    });
+</script>
+<script type="text/javascript">
+    var allpre = document.getElementsByTagName("pre");
+    for (i = 0; i < allpre.length; i++) {
+        var onepre = document.getElementsByTagName("pre")[i];
+        var mycode = document.getElementsByTagName("pre")[i].innerHTML;
+        onepre.innerHTML = '<code id="mycode">' + mycode + '</code>';
+    }
+
+    document.body.onselectstart = function(){
+        return true;
+    }
+
+</script>
+</body>
+</html>
+
+
