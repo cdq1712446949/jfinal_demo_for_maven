@@ -7,6 +7,8 @@
           <element id="module-output" name="jfinal_demo_for_maven" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: com.alibaba:druid:1.0.29" />
+          <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.2.47" />
           <element id="library" level="project" name="Maven: com.jfinal:jetty-server:2018.11" />
           <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-webapp:9.4.12.v20180830" />
           <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-xml:9.4.12.v20180830" />
@@ -26,13 +28,18 @@
           <element id="library" level="project" name="Maven: commons-lang:commons-lang:2.5" />
           <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.1.1" />
           <element id="library" level="project" name="Maven: net.sf.ezmorph:ezmorph:1.0.6" />
+          <element id="library" level="project" name="Maven: com.squareup.okhttp3:okhttp:3.10.0" />
+          <element id="library" level="project" name="Maven: com.squareup.okio:okio:1.14.0" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpclient:4.5.3" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpcore:4.4.6" />
+          <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.9" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpmime:4.5.3" />
           <element id="library" level="project" name="Maven: com.jfinal:jfinal:3.5" />
           <element id="library" level="project" name="Maven: cglib:cglib-nodep:3.2.5" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-nop:1.7.25" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.25" />
           <element id="library" level="project" name="Maven: log4j:log4j:1.2.16" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.44" />
-          <element id="library" level="project" name="Maven: com.alibaba:druid:1.0.29" />
           <element id="library" level="project" name="Maven: com.jfinal:cos:2017.5" />
         </element>
       </element>

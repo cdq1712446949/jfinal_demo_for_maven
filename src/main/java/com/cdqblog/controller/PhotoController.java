@@ -1,9 +1,12 @@
 package com.cdqblog.controller;
 
+import com.cdqblog.interceptor.CheckLogin_UserController_Interceptor;
 import com.cdqblog.model.Photo;
 import com.cdqblog.service.PhotoService;
 import com.cdqblog.service.impl.PhotoServiceImpl;
+import com.cdqblog.util.OkHttpUtil;
 import com.cdqblog.util.RequestURL;
+import com.jfinal.aop.Before;
 import com.jfinal.aop.Inject;
 import com.jfinal.core.Controller;
 import net.sf.json.JSONObject;
@@ -11,15 +14,22 @@ import net.sf.json.JSONObject;
 import java.io.File;
 import java.util.List;
 
+@Before(CheckLogin_UserController_Interceptor.class)
 public class PhotoController extends Controller {
 
     @Inject(PhotoServiceImpl.class)
     private PhotoService photoService;
 
+    //返回上传图片页面
+    public void goSubmitPhoto(){
+        render("admin/subimage.html");
+    }
+
     //上传图片
-    public void addPhoto(File file){
-        RequestURL requestURL=new RequestURL();
-        JSONObject jsonObject =requestURL.requestUrl("https://sm.ms/api/upload");
+    public void addPhoto(File smfile){
+        String s=OkHttpUtil.postUrl("https://sm.ms/api/upload",smfile);
+        System.out.println(s);
+        render("admin/subimage.html");
     }
 
     //清除上传历史

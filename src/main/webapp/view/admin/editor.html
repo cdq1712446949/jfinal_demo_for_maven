@@ -16,22 +16,24 @@
     </style>
 </head>
 <body>
-
-<form action="#(href)/article/addArticleResult">
-    标题：<input name="article.title" type="text">
-    简介：<input name="article.introduce" type="text">
-    类型：<select name="type">
-    #for(x:list)
-    <option>#(x.name)</option>
-    #end
-</select>
-    内容：<textarea name="article.content" type="text"></textarea>
-    日期：<input name="article.createdDate" type="date">
-    <input type="submit" value="提交">
-</form>
-
-<a href="#(href)/admin/admin_index">返回首页</a>
-
+<div>
+    <form action="#(href)/article/addArticleResult">
+        标题：<input name="article.title" type="text">
+        简介：<input name="article.introduce" type="text">
+        类型：<select name="type">
+        #for(x:list)
+        <option>#(x.name)</option>
+        #end
+    </select>
+        内容：<textarea name="article.content" type="text"></textarea>
+        日期：<input name="article.createdDate" type="date">
+        <input type="submit" value="提交">
+    </form>
+</div>
+<div>
+    <a href="#(href)/photo/goSubmitPhoto">上传图片</a>
+    <a href="#(href)/admin/admin_index">返回首页</a>
+</div>
 <div>
     <script id="editor" type="text/plain" style="width:1024px;height:500px;"></script>
 </div>

@@ -71,6 +71,7 @@ public class Config extends JFinalConfig {
 		me.add("/cdqblog/uediter",UEditerController.class,"/uediter/utf8-jsp");
 		me.add("/cdqblog/articleType",ArticleTypeController.class,"/view");
 		me.add("/cdqblog/notice",NoticeController.class,"/view");
+		me.add("/cdqblog/photo",PhotoController.class,"/view");
 	}
 	
 	public void configEngine(Engine me) {
