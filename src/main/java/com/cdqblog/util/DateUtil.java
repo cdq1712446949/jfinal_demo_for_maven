@@ -31,8 +31,6 @@ public class DateUtil {
     }
 
     /*将字符串转为时间戳*/
-
-
     public static long getStringToDate(String time) {
         sdf = new SimpleDateFormat("yyyy年MM月dd日");
         Date date = new Date();
@@ -43,5 +41,17 @@ public class DateUtil {
             e.printStackTrace();
         }
         return date.getTime();
+    }
+
+    /*
+     * 将时间戳转换为时间
+     */
+    public static String stampToDate(String s){
+        String res;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        long lt = new Long(s);
+        Date date = new Date(lt);
+        res = simpleDateFormat.format(date);
+        return res;
     }
 }

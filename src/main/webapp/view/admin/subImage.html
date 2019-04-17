@@ -7,11 +7,16 @@
 <body>
 
 <div>
-<form action="#(href)/photo/addPhoto" method="post" enctype="multipart/form-data">
+<form action="	https://sm.ms/api/upload" method="post" enctype="multipart/form-data" target="_blank">
     图片：<input type="file" name="smfile" accept="image/gif,image/png,image/jpeg"  >
     <input type="submit" value="上传">
 </form>
 </div>
+
+<form action="#(href)/photo/addPhoto">
+    图片信息:<input name="image" type="text">
+    <input type="submit" value="提交">
+</form>
 
 </body>
 </html>

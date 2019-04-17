@@ -3,9 +3,6 @@ package com.cdqblog.dao;
 import com.cdqblog.model.Photo;
 import com.jfinal.plugin.activerecord.Page;
 
-import java.io.File;
-import java.util.List;
-
 public class PhotoDAO {
 
     //上传图片

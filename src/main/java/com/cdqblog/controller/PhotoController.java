@@ -4,15 +4,10 @@ import com.cdqblog.interceptor.CheckLogin_UserController_Interceptor;
 import com.cdqblog.model.Photo;
 import com.cdqblog.service.PhotoService;
 import com.cdqblog.service.impl.PhotoServiceImpl;
-import com.cdqblog.util.OkHttpUtil;
-import com.cdqblog.util.RequestURL;
+import com.cdqblog.util.ImageJsonUtil;
 import com.jfinal.aop.Before;
 import com.jfinal.aop.Inject;
 import com.jfinal.core.Controller;
-import net.sf.json.JSONObject;
-
-import java.io.File;
-import java.util.List;
 
 @Before(CheckLogin_UserController_Interceptor.class)
 public class PhotoController extends Controller {
@@ -26,9 +21,9 @@ public class PhotoController extends Controller {
     }
 
     //上传图片
-    public void addPhoto(File smfile){
-        String s=OkHttpUtil.postUrl("https://sm.ms/api/upload",smfile);
-        System.out.println(s);
+    public void addPhoto(String image){
+        Photo photo=ImageJsonUtil.toPhoto(image);
+        photoService.addPhoto(photo);
         render("admin/subimage.html");
     }
 
