@@ -141,7 +141,7 @@
                         <h4>操作</h4>
                     </div>
                     <div class="panel-body" style="padding-bottom:30px;">
-                        <button class="col-sm-2" onclick="window.location.href='#(href)/article/goAddArticle'">添加文章</button>
+                        <button class="col-sm-2" onclick="window.location.href='#(href)/notice/goAddNotice'">发布公告</button>
                     </div>
                 </div>
                 <div class="panel">
@@ -168,40 +168,10 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            #for(x:articlePage.list)
+                                            #for(x:noticePage.list)
                                             <tr role="row" class="odd">
                                                 <td>#(x.id)</td>
-                                                <td>#(x.title)</td>
-                                                <td>#(x.num_look)</td>
-                                                <td>
-                                                    #if(x.type==0)
-                                                    Java Web
-                                                    #end
-                                                    #if(x.type==1)
-                                                    Java
-                                                    #end
-                                                    #if(x.type==2)
-                                                    JFinal
-                                                    #end
-                                                    #if(x.type==3)
-                                                    MySQL
-                                                    #end
-                                                    #if(x.type==4)
-                                                    Maven
-                                                    #end
-                                                    #if(x.type==5)
-                                                    ASP.NET
-                                                    #end
-                                                    #if(x.type==6)
-                                                    Android
-                                                    #end
-                                                    #if(x.type==7)
-                                                    SSH
-                                                    #end
-                                                    #if(x.type==8)
-                                                    SSM
-                                                    #end
-                                                </td>
+                                                <td>#(x.content)</td>
                                                 <td>
                                                     #if(x.status==0)
                                                     <a style="color: #08BF51">正常</a>
@@ -210,13 +180,13 @@
                                                     <a style="color: #be2626">已删除</a>
                                                     #end
                                                 </td>
-                                                <td>#(x.createdDate)</td>
+                                                <td>#(x.createDate)</td>
                                                 <td>
                                                     #if(x.status==0)
-                                                    <a href="#(href)/article/deleteArticle?id=#(x.id)">删除</a>
+                                                    <a href="#(href)/notice/deleteNotice?id=#(x.id)">删除</a>
                                                     #end
                                                     #if(x.status==-1)
-                                                    <a href="#(href)/article/huifuArticle?id=#(x.id)">恢复</a>
+                                                    <a href="#(href)/article/huifuNotice?id=#(x.id)">恢复</a>
                                                     #end
                                                 </td>
                                             </tr>

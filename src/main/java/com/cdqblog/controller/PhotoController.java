@@ -17,14 +17,14 @@ public class PhotoController extends Controller {
 
     //返回上传图片页面
     public void goSubmitPhoto(){
-        render("admin/subimage.html");
+        render("admin/subImage.html");
     }
 
     //上传图片
     public void addPhoto(String image){
         Photo photo=ImageJsonUtil.toPhoto(image);
         photoService.addPhoto(photo);
-        render("admin/subimage.html");
+        render("admin/subImage.html");
     }
 
     //清除上传历史
