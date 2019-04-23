@@ -8,6 +8,7 @@ import com.cdqblog.util.ImageJsonUtil;
 import com.jfinal.aop.Before;
 import com.jfinal.aop.Inject;
 import com.jfinal.core.Controller;
+import com.jfinal.plugin.activerecord.Page;
 
 @Before(CheckLogin_UserController_Interceptor.class)
 public class PhotoController extends Controller {
@@ -18,6 +19,23 @@ public class PhotoController extends Controller {
     //返回上传图片页面
     public void goSubmitPhoto(){
         render("admin/subImage.html");
+    }
+
+    //管理员获取图片列表
+    public void getPhoto(int pn){
+        if(pn==0){
+            pn=1;
+        }
+        Page<Photo> photoPage=photoService.getPhotoByPn(pn);
+        setAttr("photoPage",photoPage);
+        render("admin/photoList.html");
+    }
+
+    //管理员通过id获取photo对象
+    public void getPhotoById(long id){
+        Photo photo=photoService.getPhotoById(id);
+        setAttr("photo",photo);
+        render("admin/photo.html");
     }
 
     //上传图片

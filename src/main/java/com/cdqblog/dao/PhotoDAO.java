@@ -20,12 +20,12 @@ public class PhotoDAO {
 
     //管理员查询图片列表
     public Page<Photo> findPhotoByPn_admin(int pn){
-        return Photo.dao.paginate(pn,10,"select *","from photo");
+        return Photo.dao.paginate(pn,10,"select *","from photo order by id desc");
     }
 
     //管理员通过id查询指定图片
-    public Photo findPhotoById_admin(int id){
-        return Photo.dao.findFirst("select * ","from photo id=?",id);
+    public Photo findPhotoById_admin(long id){
+        return Photo.dao.findFirst("select * from photo where id=?",id);
     }
 
 }

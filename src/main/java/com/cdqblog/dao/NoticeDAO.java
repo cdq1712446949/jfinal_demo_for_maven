@@ -7,12 +7,12 @@ public class NoticeDAO {
 
     //用户获取notice列表
     public Page<Notice> getNoticeByPn_user(int pn){
-        return Notice.dao.paginate(pn,5,"select * ","from notice where status=0");
+        return Notice.dao.paginate(pn,5,"select * ","from notice where status=0 order by id desc");
     }
 
     //管理员获取notice列表
     public Page<Notice> getNoticeByPn_admin(int pn){
-        return Notice.dao.paginate(pn,5,"select * ","from notice order by id");
+        return Notice.dao.paginate(pn,5,"select * ","from notice");
     }
 
     //添加notice

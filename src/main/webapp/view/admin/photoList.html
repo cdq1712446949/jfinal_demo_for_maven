@@ -142,7 +142,7 @@
                         <h4>操作</h4>
                     </div>
                     <div class="panel-body" style="padding-bottom:30px;">
-                        <button class="col-sm-2" onclick="window.location.href='#(href)/notice/goAddNotice'">发布公告</button>
+                        <button class="col-sm-2" onclick="window.location.href='#(href)/article/goAddArticle'">添加文章</button>
                     </div>
                 </div>
                 <div class="panel">
@@ -160,17 +160,21 @@
                                             <thead>
                                             <tr role="row">
                                                 <th class="sorting_asc" style="width: 10px;">ID</th>
-                                                <th class="sorting" style="width: 60px;">内容</th>
+                                                <th class="sorting" style="width: 60px;">URL</th>
+                                                <th class="sorting" style="width: 20px;">图片名称</th>
+                                                <th class="sorting" style="width: 20px;">删除地址</th>
                                                 <th class="sorting" style="width: 20px;">状态</th>
                                                 <th class="sorting" style="width: 20px;">创建时间</th>
                                                 <th class="sorting" style="width: 40px;">操作</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            #for(x:noticePage.list)
+                                            #for(x:photoPage.list)
                                             <tr role="row" class="odd">
                                                 <td>#(x.id)</td>
-                                                <td>#(x.content)</td>
+                                                <td>#(x.url)</td>
+                                                <td>#(x.filename)</td>
+                                                <td><a href="#(x.delete)" onclick="return confirm('确定删除?')">#(x.delete)</a></td>
                                                 <td>
                                                     #if(x.status==0)
                                                     <a style="color: #08BF51">正常</a>
@@ -179,40 +183,35 @@
                                                     <a style="color: #be2626">已删除</a>
                                                     #end
                                                 </td>
-                                                <td>#(x.createDate)</td>
+                                                <td>#(x.timestamp)</td>
                                                 <td>
-                                                    #if(x.status==0)
-                                                    <a href="#(href)/notice/deleteNotice?id=#(x.id)">删除</a>
-                                                    #end
-                                                    #if(x.status==-1)
-                                                    <a href="#(href)/article/huifuNotice?id=#(x.id)">恢复</a>
-                                                    #end
+                                                  <a href="#(href)/photo/getPhotoById?id=#(x.id)">查看</a>
                                                 </td>
                                             </tr>
                                             #end
                                             </tbody>
                                         </table>
                                         <div>
-                                            <span><a href="#(href)/notice/getNotice?pn=1">首页</a></span>
-                                            #if(noticePage.totalPage==0)
+                                            <span><a href="#(href)/photo/getPhoto?pn=1">首页</a></span>
+                                            #if(photoPage.totalPage==0)
                                             <span><a href="#" style="color: #be2626">1</a></span>
                                             #end
-                                            #if(noticePage.totalPage!=0)
-                                            #if(noticePage.pageNumber!=1)
-                                            <span ><a href="#(href)/notice/getNotice?pn=#(noticePage.pageNumber-1)">上一页</a></span>
+                                            #if(photoPage.totalPage!=0)
+                                            #if(photoPage.pageNumber!=1)
+                                            <span ><a href="#(href)/photo/getPhoto?pn=#(photoPage.pageNumber-1)">上一页</a></span>
                                             #end
-                                            #for(x:[1..noticePage.totalPage])
-                                            #if(noticePage.pageNumber==x)
-                                            <a class="style=color: #be2626" href="#(href)/notice/getNotice?pn=#(x)">#(x)</a>
+                                            #for(x:[1..photoPage.totalPage])
+                                            #if(photoPage.pageNumber==x)
+                                            <a class="style=color: #be2626" href="#(href)/photo/getPhoto?pn=#(x)">#(x)</a>
                                             #end
-                                            #if(noticePage.pageNumber!=x)
-                                            <a  href="#(href)/notice/getNotice?pn=#(x)">#(x)</a>
+                                            #if(photoPage.pageNumber!=x)
+                                            <a  href="#(href)/photo/getPhoto?pn=#(x)">#(x)</a>
                                             #end
                                             #end
-                                            #if(noticePage.pageNumber!=noticePage.totalPage)
-                                            <span><a href="#(href)/notice/getNotice?pn=#(noticePage.pageNumber+1)">下一页</a></span>
+                                            #if(photoPage.pageNumber!=photoPage.totalPage)
+                                            <span><a href="#(href)/photo/getPhoto?pn=#(photoPage.pageNumber+1)">下一页</a></span>
                                             #end
-                                            <span ><a href="#(href)/notice/getNotice?pn=#(noticePage.totalPage)">尾页</a></span>
+                                            <span ><a href="#(href)/photo/getPhoto?pn=#(photoPage.totalPage)">尾页</a></span>
                                             #end
                                         </div>
                                     </div>

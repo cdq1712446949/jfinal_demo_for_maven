@@ -71,6 +71,7 @@
                     <ul class="nav nav-list tree">
                         <li><a href="#(href)/article/getAllArticle?pn=1">文章列表</a></li>
                         <li><a href="#(href)/articleType/getAllArticleType?pn=1">标签管理</a></li>
+                        <li><a href="#(href)/photo/getPhoto?pn=1">图片管理</a></li>
                     </ul>
                 </li>
             </ul>
@@ -175,12 +176,12 @@
                                                 </td>
                                                 <td>#(x.createdDate)</td>
                                                 <td>
-                                                    <a href="#(href)deleteUser?id=#(x.id)">删除用户</a>&nbsp;|&nbsp;
+                                                    <a href="#(href)/deleteUser?id=#(x.id)">删除用户</a>&nbsp;|&nbsp;
                                                     #if(x.status==0)
-                                                    <a href="#(href)laheiUser?id=#(x.id)">拉黑用户</a>
+                                                    <a href="#(href)/laheiUser?id=#(x.id)">拉黑用户</a>
                                                     #end
                                                     #if(x.status==-1)
-                                                    <a href="#(href)chexiaoLaHeiUser?id=#(x.id)">撤销拉黑</a>
+                                                    <a href="#(href)/chexiaoLaHeiUser?id=#(x.id)">撤销拉黑</a>
                                                     #end
                                                 </td>
                                             </tr>

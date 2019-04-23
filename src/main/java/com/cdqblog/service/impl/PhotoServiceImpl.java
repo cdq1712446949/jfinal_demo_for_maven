@@ -3,6 +3,7 @@ package com.cdqblog.service.impl;
 import com.cdqblog.dao.PhotoDAO;
 import com.cdqblog.model.Photo;
 import com.cdqblog.service.PhotoService;
+import com.jfinal.plugin.activerecord.Page;
 
 public class PhotoServiceImpl implements PhotoService {
 
@@ -20,5 +21,15 @@ public class PhotoServiceImpl implements PhotoService {
     @Override
     public boolean changeStatus(long id, int status) {
         return photoDAO.changeStatus(id,status);
+    }
+
+    @Override
+    public Page<Photo> getPhotoByPn(int pn) {
+        return photoDAO.findPhotoByPn_admin(pn);
+    }
+
+    @Override
+    public Photo getPhotoById(long id) {
+        return photoDAO.findPhotoById_admin(id);
     }
 }
